@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 import { DesktopNavigation } from "./DesktopNavigation"
 import { MobileNavigation } from "./MobileNavigation"
@@ -31,15 +32,12 @@ export function Header() {
         }
       `}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="bg-black px-4 sm:px-6 lg:px-8 border-bottom border-2 border-white">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-600 text-white">
-              <span className="text-sm font-bold">T</span>
-            </div>
             <span className="text-xl font-bold text-gray-900">
-              TEDx<span className="text-red-600">Maitama</span>
+              <Image src="/logo-white.png" alt="TedX Maitama" width={200} height={10} />
             </span>
           </Link>
 

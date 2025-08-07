@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container"
 import { Button } from "@/components/ui/Button"
 import { Play, Calendar, Users, MapPin } from "lucide-react"
 
-export default function Home() {
+export default function About() {
   return (
     <Layout>
       {/* Hero Section */}
@@ -19,7 +19,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
           >
             <p className="mt-6 text-lg leading-8 text-gray-600 sm:text-xl max-w-3xl mx-auto">
-              TedX Maitama Home Page
+              About TedX
             </p>
           
           </motion.div>

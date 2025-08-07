@@ -37,7 +37,7 @@ export function DesktopNavigation({ className }: DesktopNavigationProps) {
         <Link
           href={item.href}
           className={cn(
-            "flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:text-red-600",
+            "flex items-center gap-1 px-4 py-2 text-sm font-medium font-inter text-white transition-colors hover:text-red-600",
             item.isHighlighted && "text-red-600"
           )}
         >
@@ -87,7 +87,7 @@ export function DesktopNavigation({ className }: DesktopNavigationProps) {
       {/* Tickets button - highlighted */}
       <Link
         href={ticketsNavigation.href}
-        className="ml-4 rounded-full bg-red-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700"
+        className="ml-4 rounded-md bg-red-600 px-6 py-2 text-sm font-semibold text-white transition-colors hover:bg-red-700"
       >
         {ticketsNavigation.label}
       </Link>

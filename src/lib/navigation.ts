@@ -2,65 +2,29 @@ import { MenuItem } from "@/types/navigation"
 
 export const mainNavigation: MenuItem[] = [
   {
-    id: "home",
-    label: "Home",
-    href: "/",
-  },
-  {
     id: "about",
     label: "About",
     href: "/about",
-    children: [
-      {
-        id: "mission",
-        label: "Our Mission",
-        href: "/about/mission",
-      },
-      {
-        id: "team",
-        label: "Our Team",
-        href: "/about/team",
-      },
-      {
-        id: "history",
-        label: "Our History",
-        href: "/about/history",
-      },
-    ],
   },
   {
     id: "events",
     label: "Events",
     href: "/events",
-    children: [
-      {
-        id: "current-event",
-        label: "Current Event",
-        href: "/events/current",
-      },
-      {
-        id: "past-events",
-        label: "Past Events",
-        href: "/events/past",
-      },
-    ],
   },
-  {
+    {
     id: "speakers",
     label: "Speakers",
     href: "/speakers",
-    children: [
-      {
-        id: "all-speakers",
-        label: "All Speakers",
-        href: "/speakers/all",
-      },
-      {
-        id: "featured-speakers",
-        label: "Featured Speakers",
-        href: "/speakers/featured",
-      },
-    ],
+  },
+  {
+    id: "partners",
+    label: "Partners",
+    href: "/partners",
+  },
+  {
+    id: "contact",
+    label: "Contact",
+    href: "/contact",
   },
   {
     id: "get-involved",
@@ -70,34 +34,19 @@ export const mainNavigation: MenuItem[] = [
       {
         id: "volunteer",
         label: "Volunteer With Us",
-        href: "/get-involved/volunteer",
+        href: "/join/volunteer",
       },
       {
         id: "partner",
         label: "Partner With Us",
-        href: "/get-involved/partner",
+        href: "/join/partner",
       },
       {
         id: "speak",
         label: "Speak at TEDxMaitama",
-        href: "/get-involved/speak",
+        href: "/join/speak",
       },
     ],
-  },
-  {
-    id: "partners",
-    label: "Partners",
-    href: "/partners",
-  },
-  {
-    id: "blog",
-    label: "Blog / Insights",
-    href: "/blog",
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    href: "/contact",
   },
 ]
 
