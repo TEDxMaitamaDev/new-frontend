@@ -47,7 +47,7 @@ const socialIcons = {
 
 export function Footer() {
   return (
-    <footer className="bg-black text-white text-center">
+    <footer className="bg-black text-white text-center border-t border-tedx-brown-100">
       <div className="mx-auto md:w-6/12 w-11/12 max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           {/* Contact Information */}
           <div className="">

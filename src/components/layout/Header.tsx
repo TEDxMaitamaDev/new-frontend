@@ -32,7 +32,7 @@ export function Header() {
         }
       `}
     >
-      <div className="bg-black px-4 sm:px-6 lg:px-8 border-bottom border-2 border-white">
+      <div className="bg-black px-4 sm:px-6 lg:px-8 border-b border-white">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
