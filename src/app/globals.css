@@ -11,6 +11,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
 }
+@theme {
+  /* Colors */
+  --color-tedx-red: #CF2121;
+  --color-tedx-brown: #382929;
+  --color-tedx-brown-100: #B89E9E;
+  --color-tedx-black: #000000;
+  /* Font */
+  --font-inter: 'Inter', sans-serif;
+  --font-roboto: 'Roboto', sans-serif;
+  --font-sans: var(--font-inter);
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -88,4 +99,14 @@ html {
 
 .animate-slide-in-right {
   animation: slideInFromRight 0.3s ease-out;
+}
+
+.tedx-red {
+  color: var(--tedx-red);
+}
+.tedx-brown {
+  color: var(--tedx-brown);
+}
+.tedx-black {
+  color: var(--tedx-black);
 }

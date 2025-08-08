@@ -20,6 +20,16 @@ src/
 │   ├── layout.tsx         # Root layout with metadata
 │   ├── page.tsx           # Homepage
 │   └── globals.css        # Global styles
+│   ├── about
+│   │   └── page.tsx      # About Page
+│   ├── contact
+│   │   └── page.tsx      # Contact Page
+│   ├── events
+│   │   └── page.tsx      # Event Page
+│   ├── partners
+│   │   └── page.tsx      # Partners Page
+│   ├── speakers
+│   │   └── page.tsx      # Speakers Page 
 ├── components/
 │   ├── layout/            # Layout components
 │   │   ├── Header.tsx     # Main header with navigation
