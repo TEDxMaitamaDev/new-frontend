@@ -29,4 +29,15 @@ export const ANIMATION_DELAYS = {
   normal: 0.2,
   slow: 0.3,
   slower: 0.5,
-} as const 
+} as const
+
+export const speakers = [
+  { name: "Aisha Bello", role: "Director & Curator", image: null },
+  { name: "Chukwuma Eze", role: "Creative Director & Executive Producer", image: null },
+  { name: "Ngozi Okonjo", role: "Impact Director", image: null },
+  { name: "Ibrahim Attah", role: "Head of Communications", image: null },
+  { name: "Aisha Bello", role: "Head of People", image: null },
+  { name: "Chukwuma Eze", role: "Speaker Relationship Manager", image: null },
+  { name: "Ngozi Okonjo", role: "Volunteer Manager", image: null },
+  { name: "Ibrahim Attah", role: "“Lead with vision and integrity.”", image: null },
+];

@@ -1,5 +1,4 @@
-import Button from "@mui/material/Button";
-import Play from "@mui/icons-material/PlayArrow";
+import { Button } from "@/components/ui"
 
 export function PlayButton({ buttonText }) {
      return (
