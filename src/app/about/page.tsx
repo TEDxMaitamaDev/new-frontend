@@ -99,7 +99,7 @@ export default function About() {
       {/* Team Section */}
       <section className="py-20 bg-black text-white">
         <Container>
-          <h2 className="text-3xl font-bold mb-12">Our Team</h2>
+          <h2 className="text-3xl font-bold mb-12 md:text-justify text-center">Our Team</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center">
             {speakers.map((member, i) => (
               <div key={i} className="flex flex-col items-center">
