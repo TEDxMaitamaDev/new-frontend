@@ -11,6 +11,8 @@ export default function SpeakerSpotlightCard({ speaker }: SpeakerSpotlight) {
       <div className="size-52 rounded-full overflow-hidden bg-tedx-brown-100/95">
         <Image
           src={speaker.image}
+          width={200}
+          height={200}
           className="size-full "
           alt={`${speaker.name} image`}
         />
