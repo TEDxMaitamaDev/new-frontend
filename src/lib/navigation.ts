@@ -4,7 +4,24 @@ export const mainNavigation: MenuItem[] = [
   {
     id: "about",
     label: "About",
-    href: "/about",
+    href: "/about/about-us",
+    children: [
+      {
+        id: "about-us",
+        label: "About Us",
+        href: "/about/about-us",
+      },
+      {
+        id: "team",
+        label: "Meet the Team",
+        href: "/about/team",
+      },
+      {
+        id: "volunteers",
+        label: "Volunteers",
+        href: "/about/volunteers",
+      },
+    ],
   },
   {
     id: "events",
@@ -22,6 +39,11 @@ export const mainNavigation: MenuItem[] = [
     href: "/partners",
   },
   {
+    id: "blog",
+    label: "Blog",
+    href: "/blog",
+  },
+  {
     id: "contact",
     label: "Contact",
     href: "/contact",
@@ -34,17 +56,17 @@ export const mainNavigation: MenuItem[] = [
       {
         id: "volunteer",
         label: "Volunteer With Us",
-        href: "/join/volunteer",
+        href: "/get-involved/volunteer",
       },
       {
         id: "partner",
         label: "Partner With Us",
-        href: "/join/partner",
+        href: "/get-involved/partner",
       },
       {
         id: "speak",
         label: "Speak at TEDxMaitama",
-        href: "/join/speak",
+        href: "/get-involved/speak",
       },
     ],
   },

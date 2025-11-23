@@ -17,7 +17,7 @@ export default function SpeakerSpotlightCard({ speaker }: SpeakerSpotlight) {
           alt={`${speaker.name} image`}
         />
       </div>
-      <div className="">
+      <div className="text-gray-200">
         <h2>{speaker.name}</h2>
         <p className="text-sm font-light">"{speaker.anchored_topic}"</p>
       </div>

@@ -4,13 +4,17 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Calendar } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 import GetInvolvedSection from "@/components/ui/sections/GetInvolved.section";
 import OurValuedPartnerSection from "@/components/ui/sections/OurValuedPartner.section";
-import speakers from "@/data/speakers";
 import SpeakerSpotlightCard from "@/components/ui/cards/SpeakerSpotlight";
-import events from "@/data/events";
 import EventPreviewCard from "@/components/ui/cards/EventPreview";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Speaker } from "@/types/speaker";
+import { EventType } from "@/types/event";
+import { getAllSpeakers } from "@/lib/api/speakers";
+import { getAllEvents } from "@/lib/api/events";
 
 const stats = [
   {
@@ -27,7 +31,50 @@ const stats = [
   },
 ];
 
+
 export default function Home() {
+  const router = useRouter();
+  const [speakers, setSpeakers] = useState<Speaker[]>([])
+  const [events, setEvents] = useState<EventType[]>([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [speakersData, eventsData] = await Promise.all([
+          getAllSpeakers(),
+          getAllEvents()
+        ])
+        
+        // Transform speakers data
+        const transformedSpeakers: Speaker[] = speakersData.slice(0, 8).map((speaker) => ({
+          ...speaker,
+          image: speaker.photo || "/images/speakers/speaker-1.png",
+          role: speaker.portfolio || "",
+          biography: speaker.profile || "",
+        }))
+        
+        // Transform events data
+        const transformedEvents: EventType[] = eventsData.slice(0, 3).map((event) => ({
+          ...event,
+          date: event.start_time || event.date_created || "",
+          image: event.image || "/images/events/event-1.png",
+        }))
+        
+        setSpeakers(transformedSpeakers)
+        setEvents(transformedEvents)
+      } catch (err) {
+        console.error("Error fetching data:", err)
+        // Set empty arrays on error to prevent crashes
+        setSpeakers([])
+        setEvents([])
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -48,15 +95,19 @@ export default function Home() {
             <div className="absolute h-full w-full md:w-[90%]  right-0 bg-[url('/images/speaker-1.png')] bg-gray-900/30 bg-blend-overlay bg-cover h-full bg-top" />
             <div className="relative w-full flex h-full  flex-col md:justify-end md:items-start justify-center items-center max-w-4xl text-white p-4 md:px-0 pt-12 md:pt-0">
               <h1 className="text-3xl md:text-5xl font-bold mb-4 font-inter">
-                TEDxMaitama: The Catalyst
+                Ideas Worth Spreading
               </h1>
 
               <div className="flex items-center text-lg mb-6">
-                <Calendar className="w-5 h-5 mr-2" />
-                October 5, 2025 | Transcorp Hilton, Abuja
+                Join us for inspiring conversations, innovative thinking, 
+                <br />
+                and transformative ideas.
               </div>
 
-              <Button size="lg">Get Tickets</Button>
+              <Button onClick={() => router.push("/about")} size="lg">
+                Learn More
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
             </div>
           </motion.div>
         </Container>
@@ -104,11 +155,21 @@ export default function Home() {
             <span className="text-tedx-red">Talks &</span> Past Events
           </h2>
 
-          <div className="flex gap-8 py-4 md:py-8">
-            {events.map((event, index) => (
-              <EventPreviewCard key={index} event={event} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">Loading events...</p>
+            </div>
+          ) : events.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No events available at this time.</p>
+            </div>
+          ) : (
+            <div className="flex gap-8 py-4 md:py-8">
+              {events.map((event) => (
+                <EventPreviewCard key={event.id} event={event} />
+              ))}
+            </div>
+          )}
         </Container>
       </section>
 
@@ -119,11 +180,21 @@ export default function Home() {
             <span className="text-tedx-red">Speakers</span> Spotlight
           </h2>
 
-          <div className="flex gap-8 py-4 md:py-8">
-            {speakers.map((speaker, index) => (
-              <SpeakerSpotlightCard key={index} speaker={speaker} />
-            ))}
-          </div>
+          {loading ? (
+            <div className="text-center py-12">
+              <p className="text-white">Loading speakers...</p>
+            </div>
+          ) : speakers.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-white">No speakers available at this time.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 py-4 md:py-8">
+              {speakers.map((speaker) => (
+                <SpeakerSpotlightCard key={speaker.id} speaker={speaker} />
+              ))}
+            </div>
+          )}
         </Container>
       </section>
 
