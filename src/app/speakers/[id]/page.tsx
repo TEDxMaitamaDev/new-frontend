@@ -4,14 +4,65 @@ import { motion } from "framer-motion"
 import { Layout } from "@/components/layout/Layout"
 import { Container } from "@/components/ui/Container"
 import Image from "next/image"
-import speakers from "@/data/speakers"
-import { Router } from "next/router"
-import { useParams } from "next/navigation";
+import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import { getSpeakerById } from "@/lib/api/speakers"
+import { Speaker } from "@/types/speaker"
 
 export default function SpeakerProfile() {
     const params = useParams();
     const id = params?.id;
-    const speaker = speakers[parseInt(id as string, 10)];
+    const [speaker, setSpeaker] = useState<Speaker | null>(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+
+    useEffect(() => {
+        async function fetchSpeaker() {
+            if (!id) return
+            try {
+                setLoading(true)
+                const data = await getSpeakerById(Number(id))
+                const transformedSpeaker: Speaker = {
+                    ...data,
+                    image: data.photo || "/images/speakers/speaker-1.png",
+                    role: data.portfolio || "",
+                    biography: data.profile || "",
+                }
+                setSpeaker(transformedSpeaker)
+                setError(null)
+            } catch (err) {
+                console.error("Error fetching speaker:", err)
+                setError("Failed to load speaker. Please try again later.")
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchSpeaker()
+    }, [id])
+  if (loading) {
+    return (
+      <Layout>
+        <Container className="py-16">
+          <div className="text-center">
+            <p className="text-gray-600">Loading speaker...</p>
+          </div>
+        </Container>
+      </Layout>
+    )
+  }
+
+  if (error || !speaker) {
+    return (
+      <Layout>
+        <Container className="py-16">
+          <div className="text-center">
+            <p className="text-red-600">{error || "Speaker not found"}</p>
+          </div>
+        </Container>
+      </Layout>
+    )
+  }
+
   return (
     <Layout>
 {/* Hero Section */}
@@ -31,7 +82,7 @@ export default function SpeakerProfile() {
         <div className="flex flex-col items-start">
           <div className="w-full aspect-[3/4] overflow-hidden rounded-xl mb-4">
             <Image
-              src={speaker.image}
+              src={speaker.image || "/images/speakers/speaker-1.png"}
               alt={speaker.name}
               width={400}
               height={600}
@@ -41,7 +92,7 @@ export default function SpeakerProfile() {
           <h1 className="text-xl font-bold text-tedx-red leading-tight">
             {speaker.name}
           </h1>
-          <p className="text-gray-700 text-sm mt-1">{speaker.role}</p>
+          <p className="text-gray-700 text-sm mt-1">{speaker.role || speaker.portfolio}</p>
         </div>
       </motion.div>
     </div>
@@ -54,7 +105,7 @@ export default function SpeakerProfile() {
         <Container>
             <h2 className="text-2xl font-bold mb-4">Biography</h2>
             <p className="text-lg leading-relaxed max-w-3xl opacity-95">
-                {speaker.biography}
+                {speaker.biography || speaker.profile || "No biography available."}
             </p>
         </Container>
         </section>
