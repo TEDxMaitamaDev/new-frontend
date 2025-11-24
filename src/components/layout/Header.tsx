@@ -29,16 +29,16 @@ export function Header() {
         ${isScrolled ? " backdrop-blur-md shadow-lg" : ""}
       `}
     >
-      <div className="bg-black px-4 sm:px-6 py-4 lg:px-8 border-b border-white">
-        <div className="flex h-16 items-center justify-between">
+      <div className="bg-black px-4 sm:px-6 py-3 sm:py-4 lg:px-8 border-b border-white">
+        <div className="flex h-14 sm:h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
             <span className="text-xl font-bold text-gray-900">
               <Image
                 src="/logo-white.png"
                 alt="TedX Maitama"
                 width={360}
-                className="w-72 h-auto object-contain"
+                className="w-40 sm:w-56 md:w-64 lg:w-72 h-auto object-contain"
                 height={340}
               />
             </span>

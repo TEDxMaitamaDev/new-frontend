@@ -81,7 +81,7 @@ export default function Events() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center">
+      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
             src="/images/events/event-1.jpg"
@@ -92,12 +92,12 @@ export default function Events() {
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        <Container className="relative z-10 text-center text-white">
+        <Container className="relative z-10 text-center text-white px-4 sm:px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4"
           >
             Our <span className="text-tedx-red">Events</span>
           </motion.h1>
@@ -105,7 +105,7 @@ export default function Events() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-xl md:text-2xl max-w-3xl mx-auto mb-6 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto mb-4 sm:mb-6 leading-relaxed px-2"
           >
             Discover inspiring conferences, salons, and webinars that bring together visionary thinkers and bold ideas worth spreading.
           </motion.p>
@@ -114,7 +114,7 @@ export default function Events() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="text-lg mb-6 text-gray-200"
+              className="text-sm sm:text-base md:text-lg mb-6 text-gray-200"
             >
               {upcomingEvents.length} {upcomingEvents.length === 1 ? 'event' : 'events'} coming soon
             </motion.p>
@@ -123,9 +123,9 @@ export default function Events() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="py-16">
-        <Container>
-          <h2 className="text-2xl font-bold mb-8 text-black">Upcoming Events</h2>
+      <section className="py-8 sm:py-12 md:py-16">
+        <Container className="px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-black">Upcoming Events</h2>
           {loading ? (
             <div className="text-center py-12">
               <p className="text-gray-600">Loading events...</p>
@@ -139,44 +139,45 @@ export default function Events() {
               <p className="text-gray-600">No upcoming events at this time.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 gap-10 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
               {upcomingEvents.map((event) => {
                 const status = getStatusBadge(event)
                 return (
-                  <div key={event.id} className="grid md:grid-cols-2 gap-10 items-center">
-                  <div className="relative h-72 rounded-lg overflow-hidden">
+                  <div key={event.id} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 items-center">
+                  <div className="relative h-48 sm:h-64 md:h-72 rounded-lg overflow-hidden order-2 md:order-1">
                     <Image
                       src={event.image || "/images/events/event-1.png"}
                       alt={event.title}
                       fill
                       className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   </div>
-                  <div>
-                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                  <div className="order-1 md:order-2">
+                    <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
                       {event.event_category && (
-                        <span className="rounded-full bg-tedx-red/10 text-tedx-red px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+                        <span className="rounded-full bg-tedx-red/10 text-tedx-red px-2 sm:px-3 py-1 text-xs font-semibold uppercase tracking-wide">
                           {event.event_category}
                         </span>
                       )}
-                      <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${status.className}`}>
+                      <span className={`rounded-full px-2 sm:px-3 py-1 text-xs font-semibold uppercase tracking-wide ${status.className}`}>
                         {status.label}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold mb-2 text-black">{event.title}</h3>
+                    <h3 className="text-lg sm:text-xl font-bold mb-2 text-black">{event.title}</h3>
                     {event.location && (
-                      <p className="text-tedx-red font-semibold mb-2">
+                      <p className="text-sm sm:text-base text-tedx-red font-semibold mb-2">
                         Location: {event.location}
                       </p>
                     )}
-                    <p className="text-gray-600 mb-2">
+                    <p className="text-sm sm:text-base text-gray-600 mb-2">
                       {formatDate(event)}
                     </p>
-                    <p className="text-gray-700 mb-4">
+                    <p className="text-sm sm:text-base text-gray-700 mb-4 line-clamp-3">
                       {event.description || "Join us for an inspiring event."}
                     </p>
                     <Link href={buildEventUrl(event)}>
-                      <Button className="bg-tedx-red text-white">View Details</Button>
+                      <Button className="bg-tedx-red text-white w-full sm:w-auto">View Details</Button>
                     </Link>
                   </div>
                   </div>
@@ -188,9 +189,9 @@ export default function Events() {
       </section>
 
       {/* Past Events */}
-      <section className="py-16 bg-gray-50">
-        <Container>
-          <h2 className="text-2xl font-bold mb-8 text-black">Past Events</h2>
+      <section className="py-8 sm:py-12 md:py-16 bg-gray-50">
+        <Container className="px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-black">Past Events</h2>
           {loading ? (
             <div className="text-center py-12">
               <p className="text-gray-600">Loading events...</p>
@@ -204,7 +205,7 @@ export default function Events() {
               <p className="text-gray-600">No past events available.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {pastEvents.map((event) => {
                 const status = getStatusBadge(event)
                 return (
@@ -213,35 +214,36 @@ export default function Events() {
                     whileHover={{ scale: 1.03 }}
                     className="rounded-lg overflow-hidden bg-white shadow-sm"
                   >
-                  <div className="relative h-48">
+                  <div className="relative h-40 sm:h-48">
                     <Image
                       src={event.image || "/images/events/event-1.png"}
                       alt={event.title}
                       fill
                       className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   </div>
-                  <div className="p-4">
-                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                  <div className="p-4 sm:p-5">
+                    <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
                       {event.event_category && (
-                        <span className="rounded-full bg-tedx-red/10 text-tedx-red px-3 py-1 text-[10px] font-semibold uppercase tracking-wide">
+                        <span className="rounded-full bg-tedx-red/10 text-tedx-red px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wide">
                           {event.event_category}
                         </span>
                       )}
-                      <span className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wide ${status.className}`}>
+                      <span className={`rounded-full px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wide ${status.className}`}>
                         {status.label}
                       </span>
                     </div>
-                    <h4 className="font-semibold text-black">{event.title}</h4>
+                    <h4 className="text-base sm:text-lg font-semibold text-black mb-2 line-clamp-2">{event.title}</h4>
                     {event.location && (
-                      <p className="text-sm text-gray-600">Location: {event.location}</p>
+                      <p className="text-xs sm:text-sm text-gray-600 mb-1">Location: {event.location}</p>
                     )}
-                    <p className="text-sm text-gray-600">
+                    <p className="text-xs sm:text-sm text-gray-600 mb-3">
                       {formatDate(event)}
                     </p>
                     <Link
                       href={buildEventUrl(event)}
-                      className="mt-4 inline-flex text-sm font-semibold text-tedx-red hover:text-tedx-red/80 transition-colors"
+                      className="inline-flex text-xs sm:text-sm font-semibold text-tedx-red hover:text-tedx-red/80 transition-colors"
                     >
                       View Event Details →
                     </Link>

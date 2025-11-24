@@ -78,33 +78,32 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative  bg-tedx-black">
+      <section className="relative bg-tedx-black">
         {/* Background Image */}
 
         {/* Overlay for better text contrast */}
         <div className="absolute inset-0 bg-black/50" />
 
         {/* Hero section */}
-        <Container className="relative w-full h-[89vh] z-10 px-4">
+        <Container className="relative w-full h-[70vh] sm:h-[80vh] md:h-[89vh] z-10 px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="flex h-full justify-center"
           >
-            <div className="absolute h-full w-full md:w-[90%]  right-0 bg-[url('/images/speaker-1.png')] bg-gray-900/30 bg-blend-overlay bg-cover h-full bg-top" />
-            <div className="relative w-full flex h-full  flex-col md:justify-end md:items-start justify-center items-center max-w-4xl text-white p-4 md:px-0 pt-12 md:pt-0">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 font-inter">
+            <div className="absolute h-full w-full md:w-[90%] right-0 bg-[url('/images/speaker-1.png')] bg-gray-900/30 bg-blend-overlay bg-cover bg-top" />
+            <div className="relative w-full flex h-full flex-col md:justify-end md:items-start justify-center items-center max-w-4xl text-white p-4 sm:p-6 md:px-0 pt-12 md:pt-0">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4 font-inter text-center md:text-left">
                 Ideas Worth Spreading
               </h1>
 
-              <div className="flex items-center text-lg mb-6">
-                Join us for inspiring conversations, innovative thinking, 
-                <br />
-                and transformative ideas.
+              <div className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 text-center md:text-left">
+                <p className="mb-1">Join us for inspiring conversations, innovative thinking,</p>
+                <p>and transformative ideas.</p>
               </div>
 
-              <Button onClick={() => router.push("/about")} size="lg">
+              <Button onClick={() => router.push("/about")} size="lg" className="w-full sm:w-auto">
                 Learn More
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
@@ -112,22 +111,18 @@ export default function Home() {
           </motion.div>
         </Container>
 
-        {/*  */}
-
-        <Container className="relative flex text-center p-4 py-7 justify-center items-center">
-          <h2
-            className="text-white md:text-3xl text-2xl
-          font-bold"
-          >
+        {/* Tagline */}
+        <Container className="relative flex text-center px-4 sm:px-6 py-6 sm:py-7 justify-center items-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
             Revolutionary Ideas, Born in Abuja.
           </h2>
         </Container>
       </section>
 
-      {/*  */}
-      <section className="bg-[#EB0028] hidden md:flex">
-        <Container className="p-8 py-12">
-          <p>
+      {/* Mission Section */}
+      <section className="bg-[#EB0028] text-white">
+        <Container className="px-4 sm:px-6 py-8 sm:py-12">
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
             Our mission is to curate and amplify local ideas worth spreading by
             uniting visionary thinkers, doers, and dreamers across Nigeria and
             beyond. TEDxMaitama aims to challenge norms, inspire action, and
@@ -137,11 +132,11 @@ export default function Home() {
             extending to the world.
           </p>
 
-          <div className="py-8 mt-12 grid grid-cols-3">
+          <div className="py-6 sm:py-8 mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
             {stats.map((stat, index) => (
-              <div key={index} className="flex flex-col gap-4">
-                <h2 className="text-4xl font-bold">{stat.number}+</h2>
-                <p className="font-light">{stat.description}</p>
+              <div key={index} className="flex flex-col gap-2 sm:gap-4 text-center sm:text-left">
+                <h2 className="text-3xl sm:text-4xl font-bold">{stat.number}+</h2>
+                <p className="text-sm sm:text-base font-light">{stat.description}</p>
               </div>
             ))}
           </div>
@@ -149,9 +144,9 @@ export default function Home() {
       </section>
 
       {/* Past Events */}
-      <section className="py-8 min-h-[40vh]">
-        <Container>
-          <h2 className="text-2xl md:text-4xl font-bold text-black">
+      <section className="py-8 sm:py-12 min-h-[40vh]">
+        <Container className="px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6 sm:mb-8">
             <span className="text-tedx-red">Talks &</span> Past Events
           </h2>
 
@@ -164,7 +159,7 @@ export default function Home() {
               <p className="text-gray-600">No events available at this time.</p>
             </div>
           ) : (
-            <div className="flex gap-8 py-4 md:py-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 py-4 sm:py-8">
               {events.map((event) => (
                 <EventPreviewCard key={event.id} event={event} />
               ))}
@@ -174,9 +169,9 @@ export default function Home() {
       </section>
 
       {/* Speakers */}
-      <section className="bg-tedx-black py-8 md:py-12">
-        <Container>
-          <h2 className="text-2xl md:text-4xl font-bold text-white">
+      <section className="bg-tedx-black py-8 sm:py-12">
+        <Container className="px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 sm:mb-8">
             <span className="text-tedx-red">Speakers</span> Spotlight
           </h2>
 
@@ -189,7 +184,7 @@ export default function Home() {
               <p className="text-white">No speakers available at this time.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 py-4 md:py-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 py-4 sm:py-8">
               {speakers.map((speaker) => (
                 <SpeakerSpotlightCard key={speaker.id} speaker={speaker} />
               ))}
@@ -199,19 +194,18 @@ export default function Home() {
       </section>
 
       {/* Upcoming Events */}
-      <section className="bg-tedx-black py-8 min-h-[40vh]">
-        <Container>
-          <h2 className="text-2xl md:text-4xl font-bold text-white">
+      <section className="bg-tedx-black py-8 sm:py-12 min-h-[40vh]">
+        <Container className="px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
             <span className="text-tedx-red">Upcoming</span> Events
           </h2>
         </Container>
       </section>
 
-      {/*  */}
-
-      <section className="bg-tedx-black py-12 min-h-[40vh]">
-        <Container>
-          <h2 className="text-3xl border-y-4 border-tedx-red py-4 md:py-8 mx-auto md:max-w-4xl md:text-5xl text-center italic font-bold text-white">
+      {/* Tagline Section */}
+      <section className="bg-tedx-black py-8 sm:py-12 min-h-[40vh]">
+        <Container className="px-4 sm:px-6">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl border-y-2 sm:border-y-4 border-tedx-red py-4 sm:py-6 md:py-8 mx-auto max-w-4xl text-center italic font-bold text-white">
             Shaping, supporting, and sharing revolutionary ideas of African
             descent.
           </h2>

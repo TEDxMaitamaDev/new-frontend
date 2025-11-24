@@ -4,6 +4,7 @@
   --background: #ffffff;
   --foreground: #171717;
   --font-sans: var(--font-inter);
+  color-scheme: light;
 }
 
 @theme inline {
@@ -23,17 +24,61 @@
   --font-sans: var(--font-inter);
 }
 
+/* Force light mode - override dark mode preferences */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #171717;
+    color-scheme: light;
   }
 }
 
+html {
+  color-scheme: light;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Override any browser dark mode text color changes */
+* {
+  color-scheme: light;
+}
+
+/* Ensure all text elements default to black - Tailwind classes will override this */
+p, h1, h2, h3, h4, h5, h6, span, div, a, li, td, th, label, button {
+  color: #000000;
+}
+
+/* Ensure Tailwind text color utilities have proper specificity */
+.text-white,
+[class*="text-white"] {
+  color: rgb(255 255 255) !important;
+}
+
+.text-black,
+[class*="text-black"] {
+  color: rgb(0 0 0) !important;
+}
+
+/* TEDx color classes should work properly */
+.tedx-red,
+[class*="tedx-red"] {
+  color: var(--color-tedx-red) !important;
+}
+
+.tedx-brown,
+[class*="tedx-brown"] {
+  color: var(--color-tedx-brown) !important;
+}
+
+.tedx-black,
+[class*="tedx-black"] {
+  color: var(--color-tedx-black) !important;
 }
 
 /* Mobile menu scroll prevention */
