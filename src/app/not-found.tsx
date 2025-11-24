@@ -44,10 +44,10 @@ export default function NotFound() {
               Page Not Found
             </h2>
             <p className="text-xl md:text-2xl mb-8 text-gray-200">
-              Oops! The page you're looking for doesn't exist or has been moved.
+              Oops! The page you&rsquo;re looking for doesn&rsquo;t exist or has been moved.
             </p>
             <p className="text-lg mb-12 text-gray-300">
-              Let's get you back on track to discovering ideas worth spreading.
+              Let&rsquo;s get you back on track to discovering ideas worth spreading.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

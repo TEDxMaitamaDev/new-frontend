@@ -3,6 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { BlogPost } from "@/types/blog";
+import { createSlug } from "@/utils/slug";
 
 interface BlogCardProps {
   blog: BlogPost;
@@ -25,8 +26,10 @@ export default function BlogCard({ blog }: BlogCardProps) {
     return content.substring(0, maxLength).trim() + "...";
   };
 
+  const slug = createSlug(blog.title || `blog-${blog.id}`);
+
   return (
-    <Link href={`/blog/${blog.id}`}>
+    <Link href={`/blog/${blog.id}/${slug}`}>
       <motion.div
         whileHover={{ y: -5 }}
         className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 h-full flex flex-col"
@@ -46,7 +49,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
           <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              <span>{formatDate(blog.date_created)}</span>
+              <span>{blog.date_created ? formatDate(blog.date_created) : "Date coming soon"}</span>
             </div>
             <div className="flex items-center gap-1">
               <User className="w-4 h-4" />

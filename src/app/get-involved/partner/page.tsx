@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Container } from "@/components/ui/Container";
-import { Handshake, Mail, Phone, Target, TrendingUp, Globe } from "lucide-react";
+import { Mail, Phone, Target, TrendingUp, Globe } from "lucide-react";
 import Image from "next/image";
 
 const contacts = [

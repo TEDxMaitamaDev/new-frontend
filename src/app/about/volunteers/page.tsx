@@ -15,7 +15,7 @@ interface Volunteer {
 }
 
 export default function VolunteersPage() {
-  const [volunteers, setVolunteers] = useState<Volunteer[]>([])
+  const [volunteers] = useState<Volunteer[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

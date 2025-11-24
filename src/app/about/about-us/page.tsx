@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { Layout } from "@/components/layout/Layout"
 import { Container } from "@/components/ui/Container"
-import { Button } from "@/components/ui"
 import Image from "next/image"
 
 export default function AboutUs() {
@@ -60,7 +59,7 @@ export default function AboutUs() {
               History of TEDxMaitama
             </h3>
             <p className="text-gray-700 leading-relaxed mb-6">
-              TEDxMaitama was founded as a TED-licensed local event platform dedicated to spotlighting African voices and bold ideas. Since its inception, TEDxMaitama has curated high-impact conferences, salons, and virtual sessions, establishing itself as one of Africa's leading TEDx platforms.
+            TEDxMaitama was founded as a TED-licensed local event platform dedicated to spotlighting African voices and bold ideas. Since its inception, TEDxMaitama has curated high-impact conferences, salons, and virtual sessions, establishing itself as one of Africa&rsquo;s leading TEDx platforms.
             </p>
 
             <h3 className="text-2xl font-bold text-tedx-red mb-4">
@@ -73,9 +72,9 @@ export default function AboutUs() {
               <li>Launched campaigns, salons, and webinars reaching 15+ countries.</li>
             </ul>
 
-            <h3 className="text-2xl font-bold text-tedx-red mt-8 mb-4">TEDxMaitama's Relationship with TEDx</h3>
+            <h3 className="text-2xl font-bold text-tedx-red mt-8 mb-4">TEDxMaitama&rsquo;s Relationship with TEDx</h3>
             <p className="text-gray-700 leading-relaxed">
-              TEDxMaitama operates under the official TEDx license, independently organized in line with TED guidelines. While TEDx events are self-organized, they carry TED's global spirit of "Ideas Worth Spreading."
+              TEDxMaitama operates under the official TEDx license, independently organized in line with TED guidelines. While TEDx events are self-organized, they carry TED&rsquo;s global spirit of &ldquo;Ideas Worth Spreading.&rdquo;
             </p>
           </div>
 
@@ -85,7 +84,7 @@ export default function AboutUs() {
               Our Core Values...
               </h3>
             <p className="text-lg leading-relaxed font-bold">
-              <span className="text-tedx-red">"</span>We are guided by boldness, authenticity, inclusivity, community, innovation, and impact, principles that shape everything we do.
+              <span className="text-tedx-red">&ldquo;</span>We are guided by boldness, authenticity, inclusivity, community, innovation, and impact, principles that shape everything we do.
             </p>
           </div>
         </Container>

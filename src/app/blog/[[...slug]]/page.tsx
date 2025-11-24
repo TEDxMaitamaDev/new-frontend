@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
@@ -32,17 +32,26 @@ import { Eye, Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getBlogPostById, getAllBlogPosts, incrementBlogViews, incrementBlogLikes } from "@/lib/api/blog";
 import { BlogPost } from "@/types/blog";
+import { createSlug } from "@/utils/slug";
 
 export default function BlogPostPage() {
-  const params = useParams();
-  const blogId = params?.id as string;
-  const currentBlogId = parseInt(blogId);
+  const params = useParams<{ slug?: string[] }>();
+  const router = useRouter();
+  const slugParts = (params?.slug ?? []) as string[];
+  const currentBlogId = slugParts.length > 0 ? parseInt(slugParts[0], 10) : NaN;
+  const currentBlogSlug = slugParts[1];
   const [blog, setBlog] = useState<BlogPost | null>(null);
   const [allBlogs, setAllBlogs] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!currentBlogId || Number.isNaN(currentBlogId)) {
+      setError("Invalid blog id");
+      setLoading(false);
+      return;
+    }
+        
     async function fetchBlogData() {
       try {
         setLoading(true);
@@ -50,8 +59,7 @@ export default function BlogPostPage() {
           getBlogPostById(currentBlogId),
           getAllBlogPosts()
         ]);
-        
-        // Use actual category from API, fallback to "Community" if not available
+
         const transformedBlog: BlogPost = {
           ...blogData,
           category: blogData.category || "Community",
@@ -59,7 +67,7 @@ export default function BlogPostPage() {
           likes: blogData.likes || 0,
           tags: blogData.tags || [],
         };
-        
+
         const transformedBlogs: BlogPost[] = allBlogsData.map((post) => ({
           ...post,
           category: post.category || "Community",
@@ -67,12 +75,11 @@ export default function BlogPostPage() {
           likes: post.likes || 0,
           tags: post.tags || [],
         }));
-        
+
         setBlog(transformedBlog);
         setAllBlogs(transformedBlogs);
         setError(null);
-        
-        // Increment views when blog post is loaded
+
         await incrementBlogViews(currentBlogId);
       } catch (err) {
         console.error("Error fetching blog post:", err);
@@ -81,11 +88,17 @@ export default function BlogPostPage() {
         setLoading(false);
       }
     }
-    
-    if (currentBlogId) {
-      fetchBlogData();
-    }
+
+    fetchBlogData();
   }, [currentBlogId]);
+
+  useEffect(() => {
+    if (!blog || !currentBlogId) return;
+    const expectedSlug = createSlug(blog.title || `blog-${blog.id}`);
+    if (expectedSlug && currentBlogSlug !== expectedSlug) {
+      router.replace(`/blog/${blog.id}/${expectedSlug}`, { scroll: false });
+    }
+  }, [blog, currentBlogId, currentBlogSlug, router]);
 
   // Get next and previous posts
   const currentIndex = allBlogs.findIndex((b) => b.id === currentBlogId);
@@ -99,6 +112,11 @@ export default function BlogPostPage() {
       .filter((b) => b.category === blog.category && b.id !== blog.id)
       .slice(0, 3);
   }, [blog, allBlogs]);
+
+  const buildBlogUrl = (post: BlogPost) => {
+    const slug = createSlug(post.title || `blog-${post.id}`);
+    return `/blog/${post.id}/${slug}`;
+  };
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return "Unknown date";
@@ -449,7 +467,6 @@ export default function BlogPostPage() {
               {/* Floating Like Button - Desktop (right sidebar) */}
               <div className="hidden lg:block">
                 <FloatingLikeButton
-                  blogId={blog.id}
                   onLike={handleLike}
                   isLiked={isLiked}
                   likeCount={likeCount}
@@ -487,7 +504,7 @@ export default function BlogPostPage() {
               >
                 <div className="grid md:grid-cols-2 gap-6">
                   {prevPost && (
-                    <Link href={`/blog/${prevPost.id}`}>
+                    <Link href={buildBlogUrl(prevPost)}>
                       <div className="group p-6 border-2 border-gray-200 rounded-xl hover:border-tedx-red transition-colors">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
                           <ArrowLeft className="w-4 h-4" />
@@ -500,7 +517,7 @@ export default function BlogPostPage() {
                     </Link>
                   )}
                   {nextPost && (
-                    <Link href={`/blog/${nextPost.id}`} className={!prevPost ? "md:col-start-2" : ""}>
+                    <Link href={buildBlogUrl(nextPost)} className={!prevPost ? "md:col-start-2" : ""}>
                       <div className="group p-6 border-2 border-gray-200 rounded-xl hover:border-tedx-red transition-colors text-right md:text-left">
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-2 justify-end md:justify-start">
                           <span>Next Post</span>

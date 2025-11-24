@@ -37,7 +37,7 @@ export default function Partners() {
               Our <span className="text-tedx-red">Partners</span>
             </h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
-              Together, we're spreading ideas worth spreading and creating meaningful impact in our community.
+              Together, we&rsquo;re spreading ideas worth spreading and creating meaningful impact in our community.
             </p>
           </motion.div>
         </Container>
@@ -106,7 +106,7 @@ export default function Partners() {
               </h2>
             </div>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We're grateful to all our partners who support our mission
+              We&rsquo;re grateful to all our partners who support our mission
             </p>
           </motion.div>
 

@@ -20,7 +20,6 @@ export default function BlogPage() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [categories, setCategories] = useState<BlogCategoryResponse[]>([]);
   const [loading, setLoading] = useState(true);
-  const [categoriesLoading, setCategoriesLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -52,16 +51,11 @@ export default function BlogPage() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        setCategoriesLoading(true);
         const data = await getAllBlogCategories();
         setCategories(data);
       } catch (err) {
         console.error("Error fetching blog categories:", err);
-        // Don't set error state - categories are not critical for page functionality
-        // Just use empty array as fallback
         setCategories([]);
-      } finally {
-        setCategoriesLoading(false);
       }
     }
     fetchCategories();
