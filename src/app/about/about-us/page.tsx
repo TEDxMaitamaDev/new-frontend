@@ -42,10 +42,10 @@ export default function AboutUs() {
       {/* Commitment Section */}
       <section className="bg-tedx-red text-white py-16">
         <Container>
-          <h2 className="text-xl sm:text-2xl font-bold mb-6">
+          <h2 className="text-xl sm:text-2xl font-bold mb-6 text-white">
             TEDxMaitama is committed to sharing bold ideas that inspire action, foster community, and shape a more inclusive, innovative, and vibrant Nigeria.
           </h2>
-          <p className="max-w-4xl text-lg leading-relaxed opacity-90">
+          <p className="max-w-4xl text-lg leading-relaxed opacity-90 text-white">
             To curate and amplify local ideas worth spreading by bringing together visionary thinkers, doers, and dreamers across Nigeria and beyond—to challenge norms, inspire action, and catalyze change. TEDxMaitama is committed to building a platform that celebrates innovation, fosters deep connection, and empowers a new generation of leaders to reimagine what&apos;s possible—starting within our community and rippling out to the world.
           </p>
         </Container>
@@ -83,7 +83,7 @@ export default function AboutUs() {
             <h3 className="text-2xl font-bold mb-4 text-tedx-red">
               Our Core Values...
               </h3>
-            <p className="text-lg leading-relaxed font-bold">
+            <p className="text-lg leading-relaxed font-bold text-white">
               <span className="text-tedx-red">&ldquo;</span>We are guided by boldness, authenticity, inclusivity, community, innovation, and impact, principles that shape everything we do.
             </p>
           </div>
@@ -91,12 +91,12 @@ export default function AboutUs() {
       </section>
 
       {/* What is TEDx */}
-      <section className="py-16 bg-black">
+      <section className="py-16 bg-black text-white">
         <Container>
-          <h3 className="text-xl font-bold mb-4">
+          <h3 className="text-xl font-bold mb-4 text-white">
             What is <span className="text-tedx-red font-semibold">TEDx?</span>
           </h3>
-          <p className="text-white leading-relaxed max-w-full">
+          <p className="leading-relaxed max-w-full text-white">
             In the spirit of ideas worth spreading, TED created the TEDx program—local, self-organized events that bring people together to share a TED-like experience. Our event is called <span className="text-tedx-red font-semibold">TEDxMaitama</span>, where x stands for an independently organized TED event. At TEDxMaitama, TED Talks videos and live speakers will come together to spark deep dialogue, creativity, and connection within an intimate setting. While the TED Conference provides overall guidance for the TEDx program, each TEDx event, including ours, is self-organized.
           </p>
         </Container>

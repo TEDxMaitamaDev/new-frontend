@@ -119,8 +119,8 @@ export default function SpeakerProfile() {
       {/* Biography Section */}
       <section className="bg-tedx-red text-white py-16">
         <Container>
-          <h2 className="text-2xl font-bold mb-4">Biography</h2>
-          <p className="text-lg leading-relaxed max-w-3xl opacity-95">
+          <h2 className="text-2xl font-bold mb-4 text-white">Biography</h2>
+          <p className="text-lg leading-relaxed max-w-3xl opacity-95 text-white">
             {speaker.biography || speaker.profile || "No biography available."}
           </p>
         </Container>
@@ -166,10 +166,10 @@ export default function SpeakerProfile() {
       {/* What is TEDx */}
       <section className="py-16 bg-black text-white">
         <Container>
-          <h3 className="text-xl font-bold mb-4">
+          <h3 className="text-xl font-bold mb-4 text-white">
             What is <span className="text-tedx-red">TEDx?</span>
           </h3>
-          <p className="text-lg opacity-90 max-w-3xl">
+          <p className="text-lg opacity-90 max-w-3xl text-white">
             TEDx Maitama is an independently organized TED event that celebrates ideas
             worth spreading. Through powerful storytelling and thought-provoking talks,
             we aim to drive innovation and inspire action across our communities.
