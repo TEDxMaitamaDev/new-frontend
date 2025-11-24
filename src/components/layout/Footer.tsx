@@ -1,22 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import Link from "next/link"
 import { motion } from "framer-motion"
 import { 
   Twitter, 
   Instagram, 
-  Facebook, 
-  Youtube, 
-  ExternalLink 
+  Facebook 
 } from "lucide-react"
-import { mainNavigation, socialLinks } from "@/lib/navigation"
 import { subscribeNewsletter } from "@/lib/api/newsletter"
-
-const footerNavigation = {
-  main: mainNavigation.filter(item => !item.children), // Only top-level items
-  social: socialLinks,
-}
 
 const contactInfo = [
   {
@@ -38,14 +29,6 @@ const contactInfo = [
     isExternal: true,
   }
 ]
-
-// Social media icon mapping
-const socialIcons = {
-  twitter: Twitter,
-  instagram: Instagram,
-  facebook: Facebook,
-  youtube: Youtube,
-}
 
 export function Footer() {
   const [email, setEmail] = useState("")
@@ -71,10 +54,11 @@ export function Footer() {
       } else {
         setMessage({ type: "error", text: result.message || "Failed to subscribe. Please try again." })
       }
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as { message?: string }
       setMessage({ 
         type: "error", 
-        text: error.message || "An error occurred. Please try again later." 
+        text: err?.message || "An error occurred. Please try again later." 
       })
     } finally {
       setLoading(false)

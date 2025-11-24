@@ -57,7 +57,7 @@ export default function Tickets() {
                 No Event Tickets Available
               </h2>
               <p className="text-gray-600 text-lg">
-                We're currently not selling tickets for any events. Please check back later or subscribe to our newsletter to be notified when tickets become available.
+                We&rsquo;re currently not selling tickets for any events. Please check back later or subscribe to our newsletter to be notified when tickets become available.
               </p>
             </motion.div>
           </div>

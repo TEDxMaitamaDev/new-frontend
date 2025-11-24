@@ -12,7 +12,6 @@ import {
   Phone,
   ExternalLink 
 } from "lucide-react"
-import { cn } from "@/utils/cn"
 import { mainNavigation, socialLinks } from "@/lib/navigation"
 
 const footerNavigation = {

@@ -11,6 +11,7 @@ import { getAllEvents } from "@/lib/api/events"
 import { Speaker } from "@/types/speaker"
 import { EventResponse } from "@/lib/api/events"
 import { ChevronDown } from "lucide-react"
+import { createSlug } from "@/utils/slug"
 
 export default function Speakers() {
   const [sortBy, setSortBy] = useState("recent")
@@ -364,7 +365,7 @@ export default function Speakers() {
           ) : (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
               {filteredSpeakers.map((sp) => (
-                <Link key={sp.id} href={`/speakers/${sp.id}`}>
+                <Link key={sp.id} href={`/speakers/${sp.id}/${createSlug(sp.name || `speaker-${sp.id}`)}`}>
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="text-center"

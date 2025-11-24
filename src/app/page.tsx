@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import GetInvolvedSection from "@/components/ui/sections/GetInvolved.section";
 import OurValuedPartnerSection from "@/components/ui/sections/OurValuedPartner.section";
 import SpeakerSpotlightCard from "@/components/ui/cards/SpeakerSpotlight";

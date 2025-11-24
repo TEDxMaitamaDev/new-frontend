@@ -12,5 +12,5 @@ export type Speaker = {
   anchored_topic?: string;
   biography?: string;
   event_title?: string;
-  event_year?: number;
+  event_year?: number | null;
 };

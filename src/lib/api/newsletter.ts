@@ -20,7 +20,7 @@ export async function subscribeNewsletter(email: string): Promise<NewsletterSubs
     }
     
     return result;
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error subscribing to newsletter:', error);
     throw error;
   }

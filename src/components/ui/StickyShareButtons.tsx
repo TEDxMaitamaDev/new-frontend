@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Twitter, Facebook, Linkedin, MessageCircle, Share2, Copy, Check } from "lucide-react";
+import { Twitter, Facebook, Linkedin, MessageCircle, Copy, Check } from "lucide-react";
 
 interface StickyShareButtonsProps {
   url: string;

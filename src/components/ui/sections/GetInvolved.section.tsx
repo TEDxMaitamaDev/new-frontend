@@ -39,7 +39,7 @@ export default function GetInvolvedSection() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {involvementOptions.map((option, index) => {
+          {involvementOptions.map((option) => {
             const Icon = option.icon;
             return (
               <motion.div

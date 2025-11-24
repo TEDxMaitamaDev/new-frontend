@@ -5,14 +5,12 @@ import { Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 interface FloatingLikeButtonProps {
-  blogId: number;
   onLike: () => void;
   isLiked: boolean;
   likeCount: number;
 }
 
 export default function FloatingLikeButton({
-  blogId,
   onLike,
   isLiked,
   likeCount,

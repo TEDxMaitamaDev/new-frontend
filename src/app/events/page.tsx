@@ -5,14 +5,21 @@ import { Layout } from "@/components/layout/Layout"
 import { Container } from "@/components/ui/Container"
 import { Button } from "@/components/ui"
 import Image from "next/image"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { getAllEvents } from "@/lib/api/events"
 import { EventType } from "@/types/event"
+import { createSlug } from "@/utils/slug"
 
 export default function Events() {
   const [events, setEvents] = useState<EventType[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  const buildEventUrl = (event: EventType) => {
+    const slug = createSlug(event.title || `event-${event.id}`)
+    return `/events/${event.id}/${slug}`
+  }
 
   useEffect(() => {
     async function fetchEvents() {
@@ -37,16 +44,40 @@ export default function Events() {
     fetchEvents()
   }, [])
 
-  // Separate upcoming and past events
   const now = new Date()
-  const upcomingEvents = events.filter((event) => {
-    if (!event.start_time) return false
-    return new Date(event.start_time) > now
-  })
-  const pastEvents = events.filter((event) => {
-    if (!event.start_time) return true
-    return new Date(event.start_time) <= now
-  })
+  const isUpcoming = (event: EventType) => {
+    if (typeof event.is_upcoming === "boolean") return event.is_upcoming
+    const compareDate = event.start_time || event.event_date
+    if (!compareDate) return false
+    return new Date(compareDate) > now
+  }
+
+  const isPast = (event: EventType) => {
+    if (typeof event.is_past === "boolean") return event.is_past
+    const compareDate = event.start_time || event.event_date
+    if (!compareDate) return true
+    return new Date(compareDate) <= now
+  }
+
+  const getStatusBadge = (event: EventType) => {
+    return isUpcoming(event)
+      ? { label: "Upcoming", className: "bg-green-100 text-green-800" }
+      : { label: "Past Event", className: "bg-gray-200 text-gray-700" }
+  }
+
+  const formatDate = (event: EventType) => {
+    const rawDate = event.start_time || event.event_date || event.date_created
+    if (!rawDate) return "Date coming soon"
+    return new Date(rawDate).toLocaleDateString(undefined, {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    })
+  }
+
+  const upcomingEvents = events.filter(isUpcoming)
+  const pastEvents = events.filter(isPast)
   return (
     <Layout>
       {/* Hero Section */}
@@ -109,8 +140,10 @@ export default function Events() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-10 items-center">
-              {upcomingEvents.map((event) => (
-                <div key={event.id} className="grid md:grid-cols-2 gap-10 items-center">
+              {upcomingEvents.map((event) => {
+                const status = getStatusBadge(event)
+                return (
+                  <div key={event.id} className="grid md:grid-cols-2 gap-10 items-center">
                   <div className="relative h-72 rounded-lg overflow-hidden">
                     <Image
                       src={event.image || "/images/events/event-1.png"}
@@ -120,24 +153,35 @@ export default function Events() {
                     />
                   </div>
                   <div>
+                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                      {event.event_category && (
+                        <span className="rounded-full bg-tedx-red/10 text-tedx-red px-3 py-1 text-xs font-semibold uppercase tracking-wide">
+                          {event.event_category}
+                        </span>
+                      )}
+                      <span className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide ${status.className}`}>
+                        {status.label}
+                      </span>
+                    </div>
                     <h3 className="text-xl font-bold mb-2 text-black">{event.title}</h3>
                     {event.location && (
                       <p className="text-tedx-red font-semibold mb-2">
                         Location: {event.location}
                       </p>
                     )}
-                    {event.start_time && (
-                      <p className="text-gray-600 mb-2">
-                        {new Date(event.start_time).toLocaleDateString()}
-                      </p>
-                    )}
+                    <p className="text-gray-600 mb-2">
+                      {formatDate(event)}
+                    </p>
                     <p className="text-gray-700 mb-4">
                       {event.description || "Join us for an inspiring event."}
                     </p>
-                    <Button className="bg-tedx-red text-white">Register Now</Button>
+                    <Link href={buildEventUrl(event)}>
+                      <Button className="bg-tedx-red text-white">View Details</Button>
+                    </Link>
                   </div>
-                </div>
-              ))}
+                  </div>
+                )
+              })}
             </div>
           )}
         </Container>
@@ -161,12 +205,14 @@ export default function Events() {
             </div>
           ) : (
             <div className="grid md:grid-cols-3 gap-8">
-              {pastEvents.map((event) => (
-                <motion.div
-                  key={event.id}
-                  whileHover={{ scale: 1.03 }}
-                  className="rounded-lg overflow-hidden bg-white shadow-sm"
-                >
+              {pastEvents.map((event) => {
+                const status = getStatusBadge(event)
+                return (
+                  <motion.div
+                    key={event.id}
+                    whileHover={{ scale: 1.03 }}
+                    className="rounded-lg overflow-hidden bg-white shadow-sm"
+                  >
                   <div className="relative h-48">
                     <Image
                       src={event.image || "/images/events/event-1.png"}
@@ -176,18 +222,33 @@ export default function Events() {
                     />
                   </div>
                   <div className="p-4">
+                    <div className="mb-3 flex flex-wrap items-center gap-3">
+                      {event.event_category && (
+                        <span className="rounded-full bg-tedx-red/10 text-tedx-red px-3 py-1 text-[10px] font-semibold uppercase tracking-wide">
+                          {event.event_category}
+                        </span>
+                      )}
+                      <span className={`rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-wide ${status.className}`}>
+                        {status.label}
+                      </span>
+                    </div>
                     <h4 className="font-semibold text-black">{event.title}</h4>
                     {event.location && (
                       <p className="text-sm text-gray-600">Location: {event.location}</p>
                     )}
-                    {event.start_time && (
-                      <p className="text-sm text-gray-600">
-                        {new Date(event.start_time).toLocaleDateString()}
-                      </p>
-                    )}
+                    <p className="text-sm text-gray-600">
+                      {formatDate(event)}
+                    </p>
+                    <Link
+                      href={buildEventUrl(event)}
+                      className="mt-4 inline-flex text-sm font-semibold text-tedx-red hover:text-tedx-red/80 transition-colors"
+                    >
+                      View Event Details →
+                    </Link>
                   </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+              })}
             </div>
           )}
         </Container>
