@@ -29,15 +29,15 @@ export default function OurValuedPartnerSection() {
   };
 
   return (
-    <section className="bg-white py-8 min-h-[40vh]">
-      <Container>
-        <h2 className="text-2xl md:text-4xl font-bold text-tedx-black">
+    <section className="bg-white py-8 sm:py-12 min-h-[40vh]">
+      <Container className="px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-tedx-black mb-6 sm:mb-8">
           <span className="text-tedx-red">Our Valued</span> Partners
         </h2>
         
-        <div className="relative py-4 md:py-8">
+        <div className="relative py-4 sm:py-6 md:py-8">
           {/* Slider Container */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden px-2 sm:px-0">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentSlide}
@@ -45,7 +45,7 @@ export default function OurValuedPartnerSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="grid grid-cols-2 md:grid-cols-4 gap-8"
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8"
               >
                 {getPartnersForSlide(currentSlide).map((partner) => (
                   <motion.div
@@ -55,13 +55,14 @@ export default function OurValuedPartnerSection() {
                     transition={{ duration: 0.6, delay: 0.1 }}
                     className="flex items-center justify-center"
                   >
-                    <div className="relative w-full h-24 md:h-32 flex items-center justify-center">
+                    <div className="relative w-full h-20 sm:h-24 md:h-28 lg:h-32 flex items-center justify-center p-2">
                       <Image
                         src={`/images/partners/${partner.photo}`}
                         alt={partner.name}
                         width={150}
                         height={150}
                         className="object-contain w-full h-full"
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
                       />
                     </div>
                   </motion.div>
@@ -75,17 +76,17 @@ export default function OurValuedPartnerSection() {
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors z-10"
+                className="absolute left-0 sm:-left-4 md:-left-8 top-1/2 -translate-y-1/2 bg-white rounded-full p-1.5 sm:p-2 shadow-lg hover:bg-gray-50 transition-colors z-10"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="w-6 h-6 text-tedx-red" />
+                <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-tedx-red" />
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 bg-white rounded-full p-2 shadow-lg hover:bg-gray-50 transition-colors z-10"
+                className="absolute right-0 sm:-right-4 md:-right-8 top-1/2 -translate-y-1/2 bg-white rounded-full p-1.5 sm:p-2 shadow-lg hover:bg-gray-50 transition-colors z-10"
                 aria-label="Next slide"
               >
-                <ChevronRight className="w-6 h-6 text-tedx-red" />
+                <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-tedx-red" />
               </button>
             </>
           )}

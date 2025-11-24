@@ -28,7 +28,7 @@ export default function Contact() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center">
+      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
             src="/images/contact.jpg"
@@ -39,16 +39,16 @@ export default function Contact() {
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        <Container className="relative z-10 text-center text-white py-20">
+        <Container className="relative z-10 text-center text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
               Contact <span className="text-tedx-red">Us</span>
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed px-2">
               Have questions about sponsorships, partnerships, or general inquiries? 
               Our team is here to help you.
             </p>
@@ -80,7 +80,7 @@ export default function Contact() {
             </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             {contacts.map((contact, index) => (
               <motion.div
                 key={contact.name}
@@ -88,23 +88,23 @@ export default function Contact() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-xl bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border-2 border-gray-100 hover:border-tedx-red"
+                className="group relative overflow-hidden rounded-xl bg-white p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border-2 border-gray-100 hover:border-tedx-red"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-tedx-red/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative flex items-center gap-6">
+                <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6">
                   <div className="flex-shrink-0">
-                    <div className="rounded-full bg-tedx-red p-4 text-white transition-transform duration-300 group-hover:scale-110">
-                      <Phone className="w-6 h-6" />
+                    <div className="rounded-full bg-tedx-red p-3 sm:p-4 text-white transition-transform duration-300 group-hover:scale-110">
+                      <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">
+                  <div className="text-center sm:text-left">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-1">
                       {contact.name}
                     </h3>
-                    <p className="text-sm text-gray-500 mb-2">{contact.role}</p>
+                    <p className="text-xs sm:text-sm text-gray-500 mb-2">{contact.role}</p>
                     <a
                       href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                      className="text-tedx-red font-medium hover:text-red-700 transition-colors"
+                      className="text-sm sm:text-base text-tedx-red font-medium hover:text-red-700 transition-colors"
                     >
                       {contact.phone}
                     </a>

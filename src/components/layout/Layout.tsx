@@ -11,7 +11,7 @@ export function Layout({ children, className }: LayoutProps) {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main className={`pt-16 ${className || ""}`}>
+      <main className={`pt-14 sm:pt-16 ${className || ""}`}>
         {children}
       </main>
       <Footer />

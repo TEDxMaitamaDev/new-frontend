@@ -32,13 +32,13 @@ const involvementOptions = [
 
 export default function GetInvolvedSection() {
   return (
-    <section className="bg-tedx-red py-8 md:py-12 min-h-[40vh]">
-      <Container>
-        <h2 className="text-2xl md:text-4xl font-bold text-white mb-8 md:mb-12">
+    <section className="bg-tedx-red py-8 sm:py-12 min-h-[40vh]">
+      <Container className="px-4 sm:px-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 sm:mb-8 md:mb-12">
           <span className="text-tedx-black">Get</span> Involved
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {involvementOptions.map((option) => {
             const Icon = option.icon;
             return (

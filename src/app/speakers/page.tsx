@@ -147,7 +147,7 @@ export default function Speakers() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center justify-center">
+      <section className="relative h-[50vh] sm:h-[60vh] md:h-[70vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
             src="/images/speakers/speakers-cover.jpg"
@@ -157,12 +157,12 @@ export default function Speakers() {
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        <Container className="relative z-10 text-center text-white">
+        <Container className="relative z-10 text-center text-white px-4 sm:px-6">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
           >
             Meet the Minds Who Have Graced Our Stage
           </motion.h1>
@@ -170,38 +170,38 @@ export default function Speakers() {
       </section>
 
    {/* Stats */}
-<section className="bg-tedx-red text-white py-12 w-full">
-  <Container>
-    <div className="grid md:grid-cols-3 text-center">
+<section className="bg-tedx-red text-white py-8 sm:py-12 w-full">
+  <Container className="px-4 sm:px-6">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 text-center">
       <div>
-        <h3 className="text-4xl font-bold">30+</h3>
-        <p className="text-lg opacity-90">Speakers</p>
+        <h3 className="text-3xl sm:text-4xl font-bold">30+</h3>
+        <p className="text-base sm:text-lg opacity-90">Speakers</p>
       </div>
       <div>
-        <h3 className="text-4xl font-bold">5,087,027+</h3>
-        <p className="text-lg opacity-90">Views of our talks</p>
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold">5,087,027+</h3>
+        <p className="text-base sm:text-lg opacity-90">Views of our talks</p>
       </div>
       <div>
-        <h3 className="text-4xl font-bold">15+</h3>
-        <p className="text-lg opacity-90">Live Events</p>
+        <h3 className="text-3xl sm:text-4xl font-bold">15+</h3>
+        <p className="text-base sm:text-lg opacity-90">Live Events</p>
       </div>
     </div>
   </Container>
 </section>
 
       {/* Speakers Grid */}
-      <section className="py-16 bg-white">
-        <Container>
+      <section className="py-8 sm:py-12 md:py-16 bg-white">
+        <Container className="px-4 sm:px-6">
           {/* Filters */}
-          <div className="flex flex-wrap items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
             {/* Event Filter */}
-            <div className="relative" ref={eventDropdownRef}>
+            <div className="relative flex-1 sm:flex-initial" ref={eventDropdownRef}>
               <button
                 onClick={() => {
                   setEventDropdownOpen(!eventDropdownOpen)
                   setYearDropdownOpen(false)
                 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-md border bg-white text-gray-700 hover:bg-gray-50 min-w-[180px] justify-between"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md border bg-white text-gray-700 hover:bg-gray-50 w-full sm:min-w-[180px] justify-between text-sm sm:text-base"
               >
                 <span className="text-sm font-medium">
                   {selectedEvent === "all" 
@@ -254,13 +254,13 @@ export default function Speakers() {
             </div>
 
             {/* Year Filter */}
-            <div className="relative" ref={yearDropdownRef}>
+            <div className="relative flex-1 sm:flex-initial" ref={yearDropdownRef}>
               <button
                 onClick={() => {
                   setYearDropdownOpen(!yearDropdownOpen)
                   setEventDropdownOpen(false)
                 }}
-                className="flex items-center gap-2 px-4 py-2 rounded-md border bg-white text-gray-700 hover:bg-gray-50 min-w-[140px] justify-between"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-md border bg-white text-gray-700 hover:bg-gray-50 w-full sm:min-w-[140px] justify-between text-sm sm:text-base"
               >
                 <span className="text-sm font-medium">
                   {selectedYear === "all" ? "All Years" : selectedYear.toString()}
@@ -311,10 +311,10 @@ export default function Speakers() {
             </div>
 
             {/* Sort Options */}
-            <div className="flex gap-2 ml-auto">
+            <div className="flex flex-wrap gap-2 w-full sm:w-auto sm:ml-auto">
               <button
                 onClick={() => setSortBy("recent")}
-                className={`px-4 py-2 rounded-md border text-sm transition-colors ${
+                className={`flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-md border text-xs sm:text-sm transition-colors ${
                   sortBy === "recent"
                     ? "bg-tedx-red text-white border-tedx-red"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300"
@@ -324,7 +324,7 @@ export default function Speakers() {
               </button>
               <button
                 onClick={() => setSortBy("alphabetical")}
-                className={`px-4 py-2 rounded-md border text-sm transition-colors ${
+                className={`flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-md border text-xs sm:text-sm transition-colors ${
                   sortBy === "alphabetical"
                     ? "bg-tedx-red text-white border-tedx-red"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300"
@@ -334,7 +334,7 @@ export default function Speakers() {
               </button>
               <button
                 onClick={() => setSortBy("year")}
-                className={`px-4 py-2 rounded-md border text-sm transition-colors ${
+                className={`flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-md border text-xs sm:text-sm transition-colors ${
                   sortBy === "year"
                     ? "bg-tedx-red text-white border-tedx-red"
                     : "bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300"
@@ -363,23 +363,24 @@ export default function Speakers() {
               <p className="text-gray-600">No speakers found matching your filters.</p>
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
               {filteredSpeakers.map((sp) => (
                 <Link key={sp.id} href={`/speakers/${sp.id}/${createSlug(sp.name || `speaker-${sp.id}`)}`}>
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     className="text-center"
                   >
-                    <div className="relative w-40 h-40 mx-auto mb-4">
+                    <div className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 mx-auto mb-3 sm:mb-4">
                       <Image
                         src={sp.image || "/images/speakers/speaker-1.png"}
                         alt={sp.name}
                         fill
                         className="rounded-full object-cover"
+                        sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, (max-width: 1024px) 144px, 160px"
                       />
                     </div>
-                    <h4 className="font-semibold text-black">{sp.name}</h4>
-                    <p className="text-sm text-gray-500">{sp.role || sp.portfolio}</p>
+                    <h4 className="text-sm sm:text-base font-semibold text-black mb-1 line-clamp-2">{sp.name}</h4>
+                    <p className="text-xs sm:text-sm text-gray-500 line-clamp-2">{sp.role || sp.portfolio}</p>
                   </motion.div>
                 </Link>
               ))}

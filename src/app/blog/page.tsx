@@ -100,7 +100,7 @@ export default function BlogPage() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center">
+      <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
             src="/images/banner.jpg"
@@ -111,19 +111,19 @@ export default function BlogPage() {
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>
-        <Container className="relative z-10 text-center text-white py-20">
+        <Container className="relative z-10 text-center text-white py-12 sm:py-16 md:py-20 px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="inline-flex items-center gap-2 mb-4">
-              <BookOpen className="w-10 h-10 text-tedx-red" />
+              <BookOpen className="w-8 h-8 sm:w-10 sm:h-10 text-tedx-red" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
               Our <span className="text-tedx-red">Blog</span>
             </h1>
-            <p className="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed px-2">
               Discover stories, insights, and ideas worth spreading from the TEDxMaitama community.
             </p>
           </motion.div>
@@ -142,20 +142,20 @@ export default function BlogPage() {
           >
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-2">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2">
                   Latest <span className="text-tedx-red">Posts</span>
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-sm sm:text-base text-gray-600">
                   Explore our collection of articles and stories
                 </p>
               </div>
               
               {/* Category Filter Dropdown */}
-              <div className="relative" ref={dropdownRef}>
+              <div className="relative w-full md:w-auto" ref={dropdownRef}>
                 
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-lg hover:border-tedx-red transition-colors min-w-[180px] justify-between"
+                  className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-lg hover:border-tedx-red transition-colors w-full md:min-w-[180px] justify-between"
                 >
                   <span className="text-sm font-medium text-gray-700">
                     {selectedCategory}
@@ -172,7 +172,7 @@ export default function BlogPage() {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 mt-2 w-full bg-white border-2 border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden max-h-[300px] overflow-y-auto"
+                    className="absolute left-0 md:right-0 mt-2 w-full bg-white border-2 border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden max-h-[300px] overflow-y-auto"
                   >
                     {/* "All" option */}
                     <button
@@ -227,7 +227,7 @@ export default function BlogPage() {
             </div>
           ) : (
             <>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {displayedBlogs.map((blog, index) => (
                   <motion.div
                     key={blog.id}
