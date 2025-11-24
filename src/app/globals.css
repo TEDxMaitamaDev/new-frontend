@@ -40,7 +40,7 @@ html {
 body {
   background: #ffffff !important;
   background-color: #ffffff !important;
-  color: #000000 !important;
+  color: #000000;
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -49,12 +49,8 @@ body {
   color-scheme: light;
 }
 
-/* Ensure all text elements default to black - Tailwind classes will override this */
-p, h1, h2, h3, h4, h5, h6, span, div, a, li, td, th, label, button {
-  color: #000000;
-}
-
-/* Ensure Tailwind text color utilities have proper specificity */
+/* CRITICAL: Tailwind text color utilities MUST have highest priority and always work */
+/* These must come FIRST before any default rules */
 .text-white,
 [class*="text-white"] {
   color: rgb(255 255 255) !important;
@@ -64,6 +60,18 @@ p, h1, h2, h3, h4, h5, h6, span, div, a, li, td, th, label, button {
 [class*="text-black"] {
   color: rgb(0 0 0) !important;
 }
+
+/* Gray text colors - ensure they work with proper values */
+.text-gray-50 { color: rgb(249 250 251) !important; }
+.text-gray-100 { color: rgb(243 244 246) !important; }
+.text-gray-200 { color: rgb(229 231 235) !important; }
+.text-gray-300 { color: rgb(209 213 219) !important; }
+.text-gray-400 { color: rgb(156 163 175) !important; }
+.text-gray-500 { color: rgb(107 114 128) !important; }
+.text-gray-600 { color: rgb(75 85 99) !important; }
+.text-gray-700 { color: rgb(55 65 81) !important; }
+.text-gray-800 { color: rgb(31 41 55) !important; }
+.text-gray-900 { color: rgb(17 24 39) !important; }
 
 /* TEDx color classes should work properly */
 .tedx-red,
@@ -79,6 +87,78 @@ p, h1, h2, h3, h4, h5, h6, span, div, a, li, td, th, label, button {
 .tedx-black,
 [class*="tedx-black"] {
   color: var(--color-tedx-black) !important;
+}
+
+/* Buttons should always respect their text color classes */
+button[class*="text-white"],
+button .text-white,
+button [class*="text-white"] {
+  color: rgb(255 255 255) !important;
+}
+
+button[class*="text-gray-"],
+button .text-gray-50,
+button .text-gray-100,
+button .text-gray-200,
+button .text-gray-300,
+button .text-gray-400,
+button .text-gray-500,
+button .text-gray-600,
+button .text-gray-700,
+button .text-gray-800,
+button .text-gray-900 {
+  color: inherit;
+}
+
+/* Buttons without explicit text color should inherit from parent or use default */
+button:not([class*="text-"]):not([class*="tedx-"]) {
+  color: inherit;
+}
+
+/* Default black text for elements without any Tailwind text color classes */
+/* This uses a simpler approach: only apply if element doesn't have 'text-' in class name */
+/* BUT exclude buttons - they should inherit from their classes */
+p:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+h1:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+h2:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+h3:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+h4:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+h5:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+h6:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+span:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+div:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+a:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+li:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+td:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+th:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+label:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *) {
+  color: #000000;
+}
+
+/* Ensure text in dark background sections is white when parent has text-white class */
+/* This handles cases where parent has text-white but children don't */
+[class*="text-white"]:not(button):not(button *) p:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) h1:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) h2:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) h3:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) h4:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) h5:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) h6:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) span:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) div:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) a:not([class*="text-"]):not([class*="tedx-"]),
+[class*="text-white"]:not(button):not(button *) li:not([class*="text-"]):not([class*="tedx-"]) {
+  color: #ffffff !important;
+}
+
+/* Also handle dark background sections with text-white */
+.bg-black[class*="text-white"] *:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+.bg-tedx-black[class*="text-white"] *:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+.bg-tedx-red[class*="text-white"] *:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+[class*="bg-black"][class*="text-white"] *:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+[class*="bg-tedx-black"][class*="text-white"] *:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *),
+[class*="bg-tedx-red"][class*="text-white"] *:not([class*="text-"]):not([class*="tedx-"]):not(button):not(button *) {
+  color: #ffffff !important;
 }
 
 /* Mobile menu scroll prevention */

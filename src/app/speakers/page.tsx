@@ -174,16 +174,16 @@ export default function Speakers() {
   <Container className="px-4 sm:px-6">
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4 text-center">
       <div>
-        <h3 className="text-3xl sm:text-4xl font-bold">30+</h3>
-        <p className="text-base sm:text-lg opacity-90">Speakers</p>
+        <h3 className="text-3xl sm:text-4xl font-bold text-white">30+</h3>
+        <p className="text-base sm:text-lg opacity-90 text-white">Speakers</p>
       </div>
       <div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold">5,087,027+</h3>
-        <p className="text-base sm:text-lg opacity-90">Views of our talks</p>
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">5,087,027+</h3>
+        <p className="text-base sm:text-lg opacity-90 text-white">Views of our talks</p>
       </div>
       <div>
-        <h3 className="text-3xl sm:text-4xl font-bold">15+</h3>
-        <p className="text-base sm:text-lg opacity-90">Live Events</p>
+        <h3 className="text-3xl sm:text-4xl font-bold text-white">15+</h3>
+        <p className="text-base sm:text-lg opacity-90 text-white">Live Events</p>
       </div>
     </div>
   </Container>

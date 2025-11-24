@@ -94,16 +94,17 @@ export default function Home() {
           >
             <div className="absolute h-full w-full md:w-[90%] right-0 bg-[url('/images/speaker-1.png')] bg-gray-900/30 bg-blend-overlay bg-cover bg-top" />
             <div className="relative w-full flex h-full flex-col md:justify-end md:items-start justify-center items-center max-w-4xl text-white p-4 sm:p-6 md:px-0 pt-12 md:pt-0">
-              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4 font-inter text-center md:text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4 font-inter text-center md:text-left text-white">
                 Ideas Worth Spreading
               </h1>
 
-              <div className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 text-center md:text-left">
-                <p className="mb-1">Join us for inspiring conversations, innovative thinking,</p>
-                <p>and transformative ideas.</p>
+              <div className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 text-center md:text-left text-white">
+                <p className="mb-1 text-white">Join us for inspiring conversations, innovative thinking,</p>
+                <p className="text-white">and transformative ideas.</p>
               </div>
 
-              <Button onClick={() => router.push("/about")} size="lg" className="w-full sm:w-auto">
+              <Button onClick={() => router.push("/about")} size="lg" 
+              className="w-full sm:w-auto" variant="primary">
                 Learn More
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
@@ -122,7 +123,7 @@ export default function Home() {
       {/* Mission Section */}
       <section className="bg-[#EB0028] text-white">
         <Container className="px-4 sm:px-6 py-8 sm:py-12">
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed text-white">
             Our mission is to curate and amplify local ideas worth spreading by
             uniting visionary thinkers, doers, and dreamers across Nigeria and
             beyond. TEDxMaitama aims to challenge norms, inspire action, and
@@ -135,8 +136,8 @@ export default function Home() {
           <div className="py-6 sm:py-8 mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
             {stats.map((stat, index) => (
               <div key={index} className="flex flex-col gap-2 sm:gap-4 text-center sm:text-left">
-                <h2 className="text-3xl sm:text-4xl font-bold">{stat.number}+</h2>
-                <p className="text-sm sm:text-base font-light">{stat.description}</p>
+                <h2 className="text-3xl sm:text-4xl font-bold text-white">{stat.number}+</h2>
+                <p className="text-sm sm:text-base font-light text-white">{stat.description}</p>
               </div>
             ))}
           </div>
