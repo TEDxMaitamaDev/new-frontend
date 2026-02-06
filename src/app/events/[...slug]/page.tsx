@@ -112,6 +112,9 @@ export default function EventDetailPage() {
   const statusBadge = computeStatus();
   const eventDate = event?.start_time || event?.event_date || event?.date_created;
   const isUpcoming = statusBadge.label === "Upcoming";
+  const eventDescription = event?.description?.trim()
+    ? event.description
+    : "Join us for an inspiring experience with thought leaders and changemakers.";
 
   return (
     <Layout>
@@ -161,7 +164,6 @@ export default function EventDetailPage() {
                   </span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-bold">{event.title}</h1>
-                <p className="text-lg text-gray-200 max-w-2xl">{event.description}</p>
               </motion.div>
             </Container>
           </section>
@@ -172,9 +174,10 @@ export default function EventDetailPage() {
               <div className="grid lg:grid-cols-[2fr_1fr] gap-10">
                 <div>
                   <h2 className="text-2xl font-bold text-black mb-4">Event Overview</h2>
-                  <p className="text-gray-700 leading-relaxed">
-                    {event.description || "Join us for an inspiring experience with thought leaders and changemakers."}
-                  </p>
+                  <div
+                    className="text-gray-700 leading-relaxed"
+                    dangerouslySetInnerHTML={{ __html: eventDescription }}
+                  />
 
                   <div className="mt-8 grid gap-6 sm:grid-cols-2">
                     <div className="rounded-xl border border-gray-100 p-5 shadow-sm">
